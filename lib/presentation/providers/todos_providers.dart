@@ -66,3 +66,21 @@ class Todos extends _$Todos {
     ];
   }
 }
+
+// Usamos el snipped riverpod para crear un provider de solo lectura.
+@riverpod
+List<Todo> filteredTodos(FilteredTodosRef ref) {
+
+  // Cuando nos encontremos dentro de un @riverpod debemos usar .watch()
+  final currentFilter = ref.watch(todoCurrentFilterProvider);
+  final todos = ref.watch(todosProvider);
+
+  switch(currentFilter) {
+    case FilterType.all:
+      return todos;
+    case FilterType.completed:
+      return todos.where((todo) => todo.done).toList();
+    case FilterType.pending:
+      return todos.where((todo) => !todo.done).toList();
+  }
+}

@@ -97,6 +97,14 @@ Para hacer el toggle, necesitamos hacer otro método en nuestra clase Todos para
 
 Lo consumimos en `presentation/screens/04_todo/todo_screen.dart`.
 
+## TODOs - Aplicar el filtro seleccionado
+
+Seguimos en la pantalla de la app `State Provider + Provider` y en nuestro provider `todos_providers.dart`.
+
+Es momento de aplicar el filtro. Vamos a usar un provider de solo lectura.
+
+Lo consumimos en `presentation/screens/04_todo/todo_screen.dart`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
