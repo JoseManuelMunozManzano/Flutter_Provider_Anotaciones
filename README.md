@@ -29,6 +29,20 @@ En la carpeta `presentation` creamos la carpeta `providers`, y dentro el provide
 
 Nos vamos a `presentation/screens/01_provider/provider_screen.dart`. La idea es hacer que el texto venga de nuestro provider.
 
+## AppRouter como Provider
+
+Aunque el provider de lectura que hemos visto parece muy sencillo y no hace nada, vamos a ver este caso de uso real.
+
+Corresponde al ejemplo de nuestra app `Provider + Go_Router`.
+
+Tenemos nuestro archivo de go_router en `config/router/app_router.dart`. Imaginemos que dependemos de un provider que nos diga si la persona está autenticada o no. Si está autenticada va a mostrar las tres primeras rutas, pero si no lo está va a mostrar solo la última ruta. Es decir, basado en la autenticación vamos a construir las rutas de manera dinámica. El provider de solo lectura se va a estar enfocando en actualizarse si se dan ciertas condiciones, como que se actualice la autenticación.
+
+Vamos a modificar nuestro `GoRouter` en un provider de solo lectura. Modificamos `config/router/app_router.dart`.
+
+También tenemos que modificar nuestro archivo `main.dart`.
+
+Vamos a usar esta nueva instancia de nuestro `appRouterProvider` en otra pantalla para ver como se consume dicha instancia. Modificamos `presentation/screens/02_provider_router/router_screen.dart`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
