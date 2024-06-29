@@ -22,5 +22,19 @@ final todoCurrentFilterProvider =
 );
 
 typedef _$TodoCurrentFilter = AutoDisposeNotifier<FilterType>;
+String _$todosHash() => r'63f6177c4a7c4912eb1de1fe18adca8a66d53a69';
+
+/// See also [Todos].
+@ProviderFor(Todos)
+final todosProvider = AutoDisposeNotifierProvider<Todos, List<Todo>>.internal(
+  Todos.new,
+  name: r'todosProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$todosHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$Todos = AutoDisposeNotifier<List<Todo>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

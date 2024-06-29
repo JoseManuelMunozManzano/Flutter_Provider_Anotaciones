@@ -83,6 +83,12 @@ En `presentation/providers` vamos a crear un nuevo archivo de provider `todos_pr
 
 Este provider lo vamos a usar en la screen `presentation/screens/04_todo/todo_screen.dart`
 
+## TODOs - Listado de invitados
+
+Seguimos en la pantalla de la app `State Provider + Provider` y en nuestro provider `todos_providers.dart`.
+
+Nos vamos a crear otro provider para toda la lista de nuestros invitados y de nuevo lo consumimos en `presentation/screens/04_todo/todo_screen.dart`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
