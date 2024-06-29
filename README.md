@@ -21,6 +21,14 @@ Instalados estos paquetes, ya podemos ejecutar la generación de código con `da
 
 Este comando siempre tiene que estar en ejecución.
 
+## Provider de solo lectura
+
+Vamos a crear nuestro primer provider, que es de solo lectura.
+
+En la carpeta `presentation` creamos la carpeta `providers`, y dentro el provider `hello_world_provider.dart` y el archivo de barril `providers.dart`.
+
+Nos vamos a `presentation/screens/01_provider/provider_screen.dart`. La idea es hacer que el texto venga de nuestro provider.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
