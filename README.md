@@ -43,6 +43,18 @@ También tenemos que modificar nuestro archivo `main.dart`.
 
 Vamos a usar esta nueva instancia de nuestro `appRouterProvider` en otra pantalla para ver como se consume dicha instancia. Modificamos `presentation/screens/02_provider_router/router_screen.dart`.
 
+## Provider con cambios de estado
+
+Vamos a trabajar con la tercera opción de la app, que es `State Provider`.
+
+En este caso necesitamos un provider que pueda cambiar su estado.
+
+En la carpeta `presentation/providers` creamos el provider `state_providers.dart`.
+
+Modificamos `presentation/screens/03_state_provider/state_provider_screen.dart` para usar nuestro nuevo provider.
+
+Una vez hecho todo, vemos que si salimos de esa tercera opción y volvemos a entrar, el nuevo valor se perdió (se destruyó el estado). Veremos más adelante por qué ocurre esto.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
