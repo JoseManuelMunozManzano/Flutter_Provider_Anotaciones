@@ -71,6 +71,18 @@ Vemos que el tema oscuro se mantiene si salimos de dicha ruta, y esto es porque 
 
 Para mantener un provider vivo (y puede que lo queramos y puede que no) hacemos uso de `keepAlive: true` cuando hacemos uso de la anotación `@Riverpod`, con R mayúscula en vez de minúscula. Modificamos para ello `state_providers.dart`.
 
+## TODOs - State Providers
+
+Ahora nos centramos en la pantalla de la app `State Provider + Provider`.
+
+De nuevo, una de las recomendaciones al trabajar con Riverpod es pensar en pequeños providers en lugar de un provider gigante.
+
+Por tanto, vamos a tener tres providers, uno para saber cuál es el filtro seleccionado, otro para tener nuestra lista de invitados, y, cuando queramos aplicar el filtro, podemos crearnos un provider de solo lectura que lea este filtro, lea los todos y me regrese la cantidad de elementos acorde.
+
+En `presentation/providers` vamos a crear un nuevo archivo de provider `todos_providers.dart`.
+
+Este provider lo vamos a usar en la screen `presentation/screens/04_todo/todo_screen.dart`
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`

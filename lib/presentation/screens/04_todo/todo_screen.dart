@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/presentation/providers/todos_providers.dart';
 
 
 class TodoScreen extends StatelessWidget {
@@ -20,11 +22,14 @@ class TodoScreen extends StatelessWidget {
 }
 
 
-class _TodoView extends StatelessWidget {
+class _TodoView extends ConsumerWidget {
   const _TodoView();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+
+    final currentFilter = ref.watch(todoCurrentFilterProvider);
+
     return Column(
       children: [
         const ListTile(
@@ -34,13 +39,13 @@ class _TodoView extends StatelessWidget {
 
         SegmentedButton(
           segments: const[
-            ButtonSegment(value: 'all', icon: Text('Todos')),
-            ButtonSegment(value: 'completed', icon: Text('Invitados')),
-            ButtonSegment(value: 'pending', icon: Text('No invitados')),
+            ButtonSegment(value: FilterType.all, icon: Text('Todos')),
+            ButtonSegment(value: FilterType.completed, icon: Text('Invitados')),
+            ButtonSegment(value: FilterType.pending, icon: Text('No invitados')),
           ], 
-          selected: const <String>{ 'all' },
+          selected: <FilterType>{ currentFilter },
           onSelectionChanged: (value) {
-            
+            ref.read(todoCurrentFilterProvider.notifier).setCurrentFilter(value.first);
           },
         ),
         const SizedBox( height: 5 ),
