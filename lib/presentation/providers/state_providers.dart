@@ -24,3 +24,31 @@ class Counter extends _$Counter {
     state++;
   }
 }
+
+// Provider para gestionar el dark mode (botón de la luna)
+// Usamos el snippet riverpodclass y nos movemos con la tecla Tab.
+@riverpod
+class DarkMode extends _$DarkMode {
+
+  @override
+  bool build() => false;
+ 
+  void toggleDarkMode() {
+    state = !state;
+  }
+}
+
+// Provider para gestionar el botón de nombre aleatorio
+// Usamos el snippet riverpodclass y nos movemos con la tecla Tab.
+@riverpod
+class Username extends _$Username {
+
+  @override
+  String build() {
+    return 'Adriana Guarín';
+  }
+
+  void changeName(String name) {
+    state = name;
+  }
+}

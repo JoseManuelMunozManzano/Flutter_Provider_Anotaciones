@@ -47,13 +47,19 @@ Vamos a usar esta nueva instancia de nuestro `appRouterProvider` en otra pantall
 
 Vamos a trabajar con la tercera opción de la app, que es `State Provider`.
 
-En este caso necesitamos un provider que pueda cambiar su estado.
+En este caso necesitamos un provider que pueda cambiar su estado. Sería un StateNotifierProvider.
 
 En la carpeta `presentation/providers` creamos el provider `state_providers.dart`.
 
 Modificamos `presentation/screens/03_state_provider/state_provider_screen.dart` para usar nuestro nuevo provider.
 
 Una vez hecho todo, vemos que si salimos de esa tercera opción y volvemos a entrar, el nuevo valor se perdió (se destruyó el estado). Veremos más adelante por qué ocurre esto.
+
+Vamos a hacer funcionar también tanto el botón de la luna (dark mode) como el del Nombre aleatorio.
+
+Para el dark mode también modificamos `main.dart`, para que ese cambio de tema sea global a toda la app.
+
+La idea que persigue Riverpod con sus providers es que tengamos providers muy pequeños, especializados en una tarea. Si ocupamos una combinación de los mismos, los podemos enlazar con providers de solo lectura y otras cosas que veremos más adelante.
 
 ## Testing
 
