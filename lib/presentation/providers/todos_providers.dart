@@ -14,7 +14,7 @@ const uuid = Uuid();
 enum FilterType {all, completed, pending}
 
 // Usamos el snipped riverpodclass porque necesito cambiar el estado.
-@riverpod
+@Riverpod(keepAlive: true)
 class TodoCurrentFilter extends _$TodoCurrentFilter {
   
   @override
@@ -26,7 +26,7 @@ class TodoCurrentFilter extends _$TodoCurrentFilter {
 }
 
 // Usamos el snipped riverpodclass porque necesito cambiar el estado.
-@riverpod
+@Riverpod(keepAlive: true)
 class Todos extends _$Todos {
 
   // Nuestro estado inicial con data hardcodeada.
@@ -39,6 +39,24 @@ class Todos extends _$Todos {
     Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
     Todo(id: uuid.v4(), description: RandomGenerator.getRandomName(), completedAt: null),
   ];
+
+  // Toggle de completado
+  void toggleTodo(String id) {
+
+    // El map regresa un Iterable, pero nosotros necesitamos una lista, de ahí que acabe en .toList()
+    state = state.map((todo) {
+      if (todo.id == id) {
+        // La única manera de cambiar una propiedad es crear una nueva instancia porque todas
+        // las propiedades de la clase TODO son final. Usamos el patrón con copyWith()
+        // Es decir, esto no es posible: todo.completedAt = DateTime.now()
+        todo = todo.copyWith(
+          completedAt: todo.done ? null : DateTime.now()
+        );
+      }
+
+      return todo;
+    }).toList();
+  }
 
   // Añadido de una nueva persona
   void createTodo(String description) {

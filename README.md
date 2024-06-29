@@ -89,6 +89,14 @@ Seguimos en la pantalla de la app `State Provider + Provider` y en nuestro provi
 
 Nos vamos a crear otro provider para toda la lista de nuestros invitados y de nuevo lo consumimos en `presentation/screens/04_todo/todo_screen.dart`.
 
+## TODOs - Toggle
+
+Seguimos en la pantalla de la app `State Provider + Provider` y en nuestro provider `todos_providers.dart`.
+
+Para hacer el toggle, necesitamos hacer otro método en nuestra clase Todos para recibir el id, y si está marcado como completado, le ponemos null. Si está a null le ponemos como completado a una fecha DateTime.now().
+
+Lo consumimos en `presentation/screens/04_todo/todo_screen.dart`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
