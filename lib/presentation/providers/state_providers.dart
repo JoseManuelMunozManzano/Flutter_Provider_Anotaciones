@@ -11,7 +11,9 @@ part 'state_providers.g.dart';
 // Creamos el provider para manejar el contador.
 // Usamos el snippet riverpodclass y nos movemos con la tecla Tab.
 // _$Counter es código autogenerado por la parte de Riverpod.
-@riverpod
+// Cambiando de @riverpod a @Riverpod() puedo añadir opciones, en este caso keepAlive: true
+// para mantener el valor del estado cuando ya no uso la pantalla.
+@Riverpod(keepAlive: true)
 class Counter extends _$Counter {
 
   // Con @override sobreescribimos nuestro estado inicial.
@@ -40,7 +42,7 @@ class DarkMode extends _$DarkMode {
 
 // Provider para gestionar el botón de nombre aleatorio
 // Usamos el snippet riverpodclass y nos movemos con la tecla Tab.
-@riverpod
+@Riverpod(keepAlive: true)
 class Username extends _$Username {
 
   @override

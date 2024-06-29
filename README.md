@@ -61,6 +61,16 @@ Para el dark mode también modificamos `main.dart`, para que ese cambio de tema 
 
 La idea que persigue Riverpod con sus providers es que tengamos providers muy pequeños, especializados en una tarea. Si ocupamos una combinación de los mismos, los podemos enlazar con providers de solo lectura y otras cosas que veremos más adelante.
 
+## KeepAlive - Riverpod annotations
+
+Recuerdo que en la pantalla de la app `State Provider`, si entro y aumento el contador, salgo de esa ruta y vuelvo a entrar, pierdo el valor de dicho contador. Igual para el nombre aleatorio.
+
+Estos valores deberían de mantenerse.
+
+Vemos que el tema oscuro se mantiene si salimos de dicha ruta, y esto es porque el main, que es donde tenemos el tema, se usa siempre y nunca se va a destruir. Sin embargo, nuestro `state_provider_screen.dart` se destruye tan pronto salimos al menú principal porque ya no es necesario.
+
+Para mantener un provider vivo (y puede que lo queramos y puede que no) hacemos uso de `keepAlive: true` cuando hacemos uso de la anotación `@Riverpod`, con R mayúscula en vez de minúscula. Modificamos para ello `state_providers.dart`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
