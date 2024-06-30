@@ -28,10 +28,35 @@ class FutureProviderScreen extends ConsumerWidget {
           error: (error, stackTrace) => Text('$error'),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon( Icons.refresh ),
-        onPressed: () {  },
-      ),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            // Los FloatingActionButtons en los Scaffolds comparten un heroTag que es usado
+            // para hacer una transición entre una pantalla y otra.
+            // Si no se indica, como abajo hay otro FloatingActionButton, evita que se pueda
+            // entrar a este screen (y a los otros screens tampoco pude entrar)
+            heroTag: 'btn-1',
+            child: const Icon(Icons.refresh),
+            onPressed: () {
+              // ref.invalidate(pokemonNameProvider);
+              ref.read(pokemonIdProvider.notifier).nextPokemon();
+            },
+          ),
+
+          const SizedBox(height: 10,),
+
+          FloatingActionButton(
+            // Igual, indicamos nuestro heroTag
+            heroTag: 'btn-2',
+            child: const Icon(Icons.minimize_outlined),
+            onPressed: () {
+              // ref.invalidate(pokemonNameProvider);
+              ref.read(pokemonIdProvider.notifier).previousPokemon();
+            },
+          ),
+        ],
+      )
     );
   }
 }

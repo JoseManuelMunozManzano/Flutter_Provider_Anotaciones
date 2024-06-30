@@ -12,17 +12,52 @@ part 'future_providers.g.dart';
 // Por defecto, todos los providers de Riverpod tienen especificado el .autoDispose, es decir,
 // cuando ya no se usan, se va a borrar para liberar la memoria, por lo que cuando salimos
 // del screen y volvemos a entrar se vuelve a hacer la petición asíncrona.
-// De nuevo, para evitar que se tenga que hacer la llamada a la API, usamos @Riverpod con el keepAlive
+// De nuevo, para evitar que se tenga que hacer la llamada a la API, usamos @Riverpod con el keepAlive.
+// Además mantiene en cache todos los demás pokemons por los que hemos pasado.
 @Riverpod(keepAlive: true)
 Future<String> pokemonName(PokemonNameRef ref) async {
 
-  final pokemonName = await PokemonInformation.getPokemonName(1);
+  // IMPORTANTE: No podemos tener un provider que tiene un autoDispose() pero nuestro Future
+  // depende de este valor de otro provider. Un provider puede "romper" el otro.
+  // Para solucionar esto, en el otro provider indicamos el keepAlive a true.
+  final pokemonId = ref.watch(pokemonIdProvider);
+
+  final pokemonName = await PokemonInformation.getPokemonName(pokemonId);
 
   // Este método nos permite ejecutar algún tipo de código cuando ya no se va a utilizar.
   // Usando keepAlive en true no se va a destruir y no se va a llegar a ejecutar nunca.
+  //
+  // PERO, usando en nuestro screen ref.invalidate() SI que entramos aquí, ya que estamos
+  // invalidando nuestro provider.
   ref.onDispose(() {
     print('Estamos a punto de eliminar este provider');
   });
 
   return pokemonName;
+}
+
+// Provider con estado para ir incrementando el num. de Pokemon y hacemos dependiente el Future.
+// En la siguiente clase vamos a ver como poder mandar argumentos al Future Provider y así evitar este paso.
+// Usamos el snippet riverpodclass porque vamos a mantener un estado.
+// Tenemos que indicar el keepAlive a true porque el Future Provider tiene un onDispose() y puede romper este
+// al destruirse.
+@Riverpod(keepAlive: true)
+class PokemonId extends _$PokemonId {
+
+  @override
+  int build() => 1;
+
+  void nextPokemon() {
+    state++;
+  }
+
+  // Como se mantienen en caché todos los demás pokemons por los que hemos pasado, se puede hacer esto.
+  // PERO NO FUNCIONA porque al hacer arriba el watch de pokemonIdProvider, al cambiar el state, se vuelve
+  // a disparar todo el proceso de la petición.
+  void previousPokemon() {
+
+    if (state > 1) {
+      state--;
+    }
+  }
 }

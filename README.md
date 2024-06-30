@@ -115,6 +115,20 @@ En `presentation/providers` vamos a crear un nuevo archivo de provider `future_p
 
 Lo consumimos en nuestro screen `presentation/screens/05_future_provider/future_provider_screen.dart`.
 
+## Provider invalidar y dependencias
+
+Seguimos en la pantalla de la app `Future Provider` y en nuestro provider `future_providers.dart`.
+
+Lo consumimos en `presentation/screens/05_future_provider/future_provider_screen.dart`.
+
+Vamos a hacer una prueba del uso en nuestro screen de `ref.invalidate()`, al pulsar el botón del screen, para llamar al `ref.onDispose()` en nuestro provider. Con esto destruimos el provider.
+
+Lo otro que hacemos es comentar el `ref.invalidate()` que hemos creado como prueba, y usar el botón del screen para mostrar el siguiente pokemon.
+
+También vemos que los pokemons anteriores se quedan guardados en caché del provider y creamos un nuevo botón para volver a acceder a ellos. El problema es que, tal y como lo hemos hecho, no va a funcionar, no lo tiene en su ProviderScope y tiene que volver a hacer la petición. El problema es que en nuestro FutureProvider no tenemos ninguna dependencia, sino que el id cambia y vuelve a lanzar todo el proceso de construcción de ese nuevo valor del Future.
+
+En la siguiente clase vamos a abordar el problema para mantener los valores de los Futures para traer esta información del caché.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
