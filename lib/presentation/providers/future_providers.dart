@@ -61,3 +61,20 @@ class PokemonId extends _$PokemonId {
     }
   }
 }
+
+
+//! Anteriormente llamados Family
+// Usamos el snippet riverpod.
+// Si necesitamos recibir el argumento desde el mundo exterior, solo tenemos que indicarlo
+// en los argumentos de la función
+// No olvidar indicar el keepAlive a true para que no se destruyan los valores anteriores
+// y que no vuelve a hacer la petición.
+// Recordar que todo esto de recibir el argumento y lo del keepAlive es para poder usar la caché del provider
+// y no tener que volver a hacer peticiones de ids que ya tenemos en la caché.
+@Riverpod(keepAlive: true)
+Future<String> pokemon(PokemonRef ref, int pokemonId) async {
+
+  final pokemonName = await PokemonInformation.getPokemonName(pokemonId);
+
+  return pokemonName;
+}

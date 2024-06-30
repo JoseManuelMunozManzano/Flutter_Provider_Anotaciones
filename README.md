@@ -129,6 +129,18 @@ También vemos que los pokemons anteriores se quedan guardados en caché del pro
 
 En la siguiente clase vamos a abordar el problema para mantener los valores de los Futures para traer esta información del caché.
 
+## Future Provider con argumentos
+
+Vamos a trabajar en la pantalla de `Family Future Provider`.
+
+Antes de usar anotaciones, el concepto family indicaba que podíamos mandarle un argumento a nuestro provider, y, acorde a ese argumento, podíamos determinar algo.
+
+Lo bueno del family es que, si el argumento era el mismo valor y ya tenía una resolución de un Future, entonces devuelve ese mismo valor del Future, a menos de que lo hayamos invalidado.
+
+Seguimos en nuestro archivo de providers `future_providers.dart`, donde nos creamos un nuevo provider `pokemon` que recibe como argumento un entero con el número de pokemon.
+
+Lo consumimos en `presentation/screens/06_family_future_provider/future_provider_screen.dart` donde por primera vez usamos un `StatefulWidget`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
