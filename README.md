@@ -141,6 +141,20 @@ Seguimos en nuestro archivo de providers `future_providers.dart`, donde nos crea
 
 Lo consumimos en `presentation/screens/06_family_future_provider/future_provider_screen.dart` donde por primera vez usamos un `StatefulWidget`.
 
+## Stream Provider
+
+Vamos a trabajar en la pantalla de `Stream Provider`.
+
+Un Stream Provider tiene la misma complejidad y características que un Future Provider y se diferencia en el uso de yield en vez de return, en el uso de async\* en vez de async y que maneja un stream en vez de un Future.
+
+En `presentation/providers` vamos a crear un nuevo archivo de provider `stream_provider.dart`.
+
+Lo consumimos en `presentation/screens/07_stream_provider/stream_provider_screen.dart`
+
+Vemos que si estamos en este screen y no se han emitido todos los valores, salimos del screen, esperamos un poco y volvemos a entrar, veremos que sale la data que se ha estado emitiendo mientras estábamos fuera del screen. Esto ocurre porque el proceso que se está ejecutando no está amarrado al widget, sino al provider, y esto es muy útil.
+
+Las siguientes pantallas NO tienen provider con anotaciones, por lo que NO se ven.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
