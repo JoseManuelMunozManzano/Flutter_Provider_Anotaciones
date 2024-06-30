@@ -105,6 +105,16 @@ Es momento de aplicar el filtro. Vamos a usar un provider de solo lectura.
 
 Lo consumimos en `presentation/screens/04_todo/todo_screen.dart`.
 
+## Future Provider
+
+Vamos a trabajar en la pantalla de `Future Provider`.
+
+La idea es que, cuando estemos dentro, hagamos una petición asíncrona y traigamos información. Para ello usaremos el fuente que tenemos en `config/helpers/pokemon_information.dart`, donde hemos puesto un delay de 2sg de manera intencionada.
+
+En `presentation/providers` vamos a crear un nuevo archivo de provider `future_providers.dart`.
+
+Lo consumimos en nuestro screen `presentation/screens/05_future_provider/future_provider_screen.dart`.
+
 ## Testing
 
 Ejecutar el build runner: `dart run build_runner watch`
